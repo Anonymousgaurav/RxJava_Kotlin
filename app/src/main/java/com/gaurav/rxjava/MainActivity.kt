@@ -15,20 +15,21 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    val mList  = mutableListOf(1,2,3,4,5,6,7,8,9,10,11,12,13,14,145)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        val observalble = Observable.just(1)
-
-        val observer = object : Observer<Int> {
+        val observalble = Observable.just(mList)
+        val observer = object : Observer<List<Int>> {
             override fun onSubscribe(d: Disposable?) {
                 Log.d(TAG, "onSubscribe")
-
             }
 
-            override fun onNext(t: Int?) {
+            override fun onNext(t: List<Int>?) {
                 Log.d(TAG, "onNext : $t")
             }
 
@@ -40,6 +41,28 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "onComplete")
             }
         }
+
+
+
+
+//        val observer = object : Observer<Int> {
+//            override fun onSubscribe(d: Disposable?) {
+//                Log.d(TAG, "onSubscribe")
+//
+//            }
+//
+//            override fun onNext(t: Int?) {
+//                Log.d(TAG, "onNext : $t")
+//            }
+//
+//            override fun onError(e: Throwable?) {
+//                Log.d(TAG, "onError : ${e.toString()}")
+//            }
+//
+//            override fun onComplete() {
+//                Log.d(TAG, "onComplete")
+//            }
+//        }
 
 
 
