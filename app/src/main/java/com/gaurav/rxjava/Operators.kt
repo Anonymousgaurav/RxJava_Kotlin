@@ -6,8 +6,9 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.*
+import java.util.concurrent.TimeUnit
 
-val mListNum = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 145)
+val mListNum = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
 val arraysOfNum = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 145)
 val arraysOfNum2 = arrayOf(10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150)
 
@@ -58,16 +59,11 @@ fun justOperator() {
     observalble.subscribe(observer)
 }
 
+fun fromOperator() {
+    val observalble = Observable.fromArray(arraysOfNum, arraysOfNum2)
 
 
-
-fun fromOperator()
-{
-    val observalble = Observable.fromArray(arraysOfNum,arraysOfNum2)
-
-
-    val observer = object : Observer<Array<Int>>
-    {
+    val observer = object : Observer<Array<Int>> {
         override fun onSubscribe(d: Disposable?) {
             Log.d(TAG, "onSubscribe")
         }
@@ -88,4 +84,61 @@ fun fromOperator()
 
     observalble.subscribe(observer)
 
+}
+
+fun fromIterableOperator() {
+    val observable = Observable.fromIterable(mListNum)
+
+
+    val observer = object : Observer<Int> {
+        override fun onSubscribe(d: Disposable?) {
+            Log.d(TAG, "onSubscribe")
+        }
+
+        override fun onNext(t: Int?) {
+            Log.d(TAG, "onNext : $t")
+        }
+
+        override fun onError(e: Throwable?) {
+            Log.d(TAG, "onError : ${e.toString()}")
+        }
+
+        override fun onComplete() {
+            Log.d(TAG, "onComplete")
+        }
+
+
+    }
+
+    observable.subscribe(observer)
+
+}
+
+
+fun rangeOperator(): Observable<Int> {
+    return Observable.range(1, 100)
+}
+
+
+fun repeatOperator(): Observable<Int> {
+    //  how many times you want to repeat the values
+    return Observable.range(1, 10).repeat(3)
+}
+
+
+fun intervalOperator(): Observable<Long> {
+    return Observable.interval(1, TimeUnit.SECONDS).takeWhile { value ->
+        value <= 10
+    }
+
+    // emit the value continously
+    // after 10 seconds it will terminate
+}
+
+
+
+fun timerOperator(): Observable<Long> {
+
+    // it will not emit the value continuosly
+    return Observable.timer(5, TimeUnit.SECONDS)
 }

@@ -22,7 +22,57 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        fromOperator()
+//        rangeOperator().subscribe(
+//                {
+//                    Log.d(TAG, "onNext : $it")
+//                },
+//                {
+//                    Log.d(TAG, "onError : ${it.toString()}")
+//                },
+//                {
+//                    Log.d(TAG, "onComplete")
+//                }
+//        )
+
+
+//        repeatOperator().subscribe(
+//                {
+//                    Log.d(TAG, "onNext : $it")
+//                },
+//                {
+//                    Log.d(TAG, "onError : ${it.toString()}")
+//                },
+//                {
+//                    Log.d(TAG, "onComplete")
+//                }
+//        )
+
+//        intervalOperator().subscribe(
+//                {
+//                    Log.d(TAG, "onNext : $it")
+//                },
+//                {
+//                    Log.d(TAG, "onError : ${it.toString()}")
+//                },
+//                {
+//                    Log.d(TAG, "onComplete")
+//                }
+//        )
+
+
+        timerOperator().subscribe(
+                {
+                    Log.d(TAG, "onNext : $it")
+                },
+                {
+                    Log.d(TAG, "onError : ${it.toString()}")
+                },
+                {
+                    Log.d(TAG, "onComplete")
+                }
+        )
+
+
 
 
     }
