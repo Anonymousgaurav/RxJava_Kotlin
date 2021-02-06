@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -60,7 +58,36 @@ class MainActivity : AppCompatActivity() {
 //        )
 
 
-        timerOperator().subscribe(
+//        timerOperator().subscribe(
+//                {
+//                    Log.d(TAG, "onNext : $it")
+//                },
+//                {
+//                    Log.d(TAG, "onError : ${it.toString()}")
+//                },
+//                {
+//                    Log.d(TAG, "onComplete")
+//                }
+//        )
+//
+
+//        createOperator().subscribe(
+//                {
+//                    Log.d(TAG, "onNext : $it")
+//                },
+//                {
+//                    Log.d(TAG, "onError : ${it.toString()}")
+//                },
+//                {
+//                    Log.d(TAG, "onComplete")
+//                }
+//        )
+
+
+        filterOperator().filter {
+            it.age > 18
+        }.subscribe(
+
                 {
                     Log.d(TAG, "onNext : $it")
                 },
@@ -70,11 +97,9 @@ class MainActivity : AppCompatActivity() {
                 {
                     Log.d(TAG, "onComplete")
                 }
+
+
         )
-
-
-
-
     }
 
 

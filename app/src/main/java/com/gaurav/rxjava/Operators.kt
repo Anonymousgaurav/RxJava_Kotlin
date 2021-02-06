@@ -2,7 +2,9 @@ package com.gaurav.rxjava
 
 import android.util.Log
 import com.gaurav.rxjava.MainActivity.Companion.TAG
+import com.gaurav.rxjava.data.User
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import java.util.*
@@ -11,6 +13,16 @@ import java.util.concurrent.TimeUnit
 val mListNum = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
 val arraysOfNum = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 145)
 val arraysOfNum2 = arrayOf(10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150)
+
+val mUserList = mutableListOf<User>(
+        User(1, "Gaurav", 20),
+        User(1, "Shibu", 25),
+        User(1, "Avinash", 30),
+        User(1, "Abhishek", 12),
+        User(1, "Arun", 15),
+        User(1, "Ashish", 16),
+        User(1, "Vivek", 18)
+)
 
 
 fun justOperator() {
@@ -135,10 +147,33 @@ fun intervalOperator(): Observable<Long> {
     // after 10 seconds it will terminate
 }
 
-
-
 fun timerOperator(): Observable<Long> {
 
     // it will not emit the value continuosly
     return Observable.timer(5, TimeUnit.SECONDS)
+}
+
+
+fun createOperator(): Observable<Int> {
+
+    // it will not emit the value continuosly
+    return Observable.create(ObservableOnSubscribe<Int>
+    {
+        try {
+            for (i in mListNum) {
+                it.onNext(i * 5)
+            }
+
+            it.onComplete()
+
+        } catch (e: Exception) {
+            it.onError(e)
+
+        }
+    })
+}
+
+
+fun filterOperator(): Observable<User> {
+    return Observable.fromIterable(mUserList)
 }
