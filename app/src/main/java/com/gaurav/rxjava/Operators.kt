@@ -174,6 +174,43 @@ fun createOperator(): Observable<Int> {
 }
 
 
-fun filterOperator(): Observable<User> {
+fun filterOperator(): Observable<User>
+{
+    // filter the data by attributes
+    return Observable.fromIterable(mUserList)
+}
+
+
+
+fun lastOperator() : Observable<User>
+{
+    // returns last object from list
+    return Observable.fromIterable(mUserList)
+}
+
+
+fun distinctOperator() : Observable<User>
+{
+    // remove duplicates from thelist
+    return Observable.fromIterable(mUserList)
+}
+
+fun skipOperator() : Observable<User>
+{
+    // skip the objects from first n terms
+    return Observable.fromIterable(mUserList)
+}
+
+
+fun bufferOperator() : Observable<User>
+{
+    // return the objects in a bundle , it will not return single single item
+    return Observable.fromIterable(mUserList)
+}
+
+
+fun mapOperator() : Observable<User>
+{
+    // return the objects by adding any function
     return Observable.fromIterable(mUserList)
 }
